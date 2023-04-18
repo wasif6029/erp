@@ -10,4 +10,6 @@ import lombok.ToString;
 public class UpdateAdminRequest {
     private String firstName;
     private String lastName;
+    private String userName;
+    private String password;
 }
