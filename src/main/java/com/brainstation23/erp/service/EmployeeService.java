@@ -20,37 +20,37 @@ import java.util.UUID;
 @Service
 public class EmployeeService {
     public static final String EMPLOYEE_NOT_FOUND = "Employee Not Found";
-    private final EmployeeRepository EmployeeRepository;
-    private final EmployeeMapper EmployeeMapper;
+    private final EmployeeRepository employeeRepository;
+    private final EmployeeMapper employeeMapper;
 
     public Page<Employee> getAll(Pageable pageable) {
-        var entities = EmployeeRepository.findAll(pageable);
-        return entities.map(EmployeeMapper::entityToDomain);
+        var entities = employeeRepository.findAll(pageable);
+        return entities.map(employeeMapper::entityToDomain);
     }
 
     public Employee getOne(UUID id) {
-        var entity = EmployeeRepository.findById(id)
+        var entity = employeeRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(EMPLOYEE_NOT_FOUND));
-        return EmployeeMapper.entityToDomain(entity);
+        return employeeMapper.entityToDomain(entity);
     }
 
     public UUID createOne(CreateEmployeeRequest createRequest) {
         var entity = new EmployeeEntity();
         entity.setFirstName(createRequest.getFirstName());
         entity.setLastName(createRequest.getLastName());
-        var createdEntity = EmployeeRepository.save(entity);
+        var createdEntity = employeeRepository.save(entity);
         return createdEntity.getId();
     }
 
     public void updateOne(UUID id, UpdateEmployeeRequest updateRequest) {
-        var entity = EmployeeRepository.findById(id)
+        var entity = employeeRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(EMPLOYEE_NOT_FOUND));
         entity.setFirstName(updateRequest.getFirstName());
         entity.setLastName(updateRequest.getLastName());
-        EmployeeRepository.save(entity);
+        employeeRepository.save(entity);
     }
 
     public void deleteOne(UUID id) {
-        EmployeeRepository.deleteById(id);
+        employeeRepository.deleteById(id);
     }
 }
