@@ -36,10 +36,11 @@ public class AdminService {
 
     public UUID createOne(CreateAdminRequest createRequest) {
         var entity = new AdminEntity();
-        entity.setFirstName(createRequest.getFirstName());
-        entity.setLastName(createRequest.getLastName());
-        entity.setUserName(createRequest.getUserName());
-        entity.setPassword(createRequest.getPassword());
+        entity.setId(UUID.randomUUID())
+                .setUserName(createRequest.getUserName())
+                .setFirstName(createRequest.getFirstName())
+                .setLastName(createRequest.getLastName())
+                .setPassword(createRequest.getPassword());
         var createdEntity = adminRepository.save(entity);
         return createdEntity.getId();
     }
@@ -47,10 +48,10 @@ public class AdminService {
     public void updateOne(UUID id, UpdateAdminRequest updateRequest) {
         var entity = adminRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(ADMIN_NOT_FOUND));
-        entity.setFirstName(updateRequest.getFirstName());
-        entity.setLastName(updateRequest.getLastName());
-        entity.setUserName(updateRequest.getUserName());
-        entity.setPassword(updateRequest.getPassword());
+        entity.setFirstName(updateRequest.getFirstName())
+                .setLastName(updateRequest.getLastName())
+                .setPassword(updateRequest.getPassword())
+                .setUserName(updateRequest.getUserName());
         adminRepository.save(entity);
     }
 

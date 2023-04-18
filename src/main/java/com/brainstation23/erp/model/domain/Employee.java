@@ -1,5 +1,6 @@
 package com.brainstation23.erp.model.domain;
 
+import com.brainstation23.erp.persistence.entity.OrganizationEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,4 +18,7 @@ public class Employee {
     private String lastName;
     private String userName;
     private String password;
+    private String email;
+    private double balance;
+    private OrganizationEntity organization;
 }
