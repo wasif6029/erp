@@ -9,5 +9,5 @@ import org.mapstruct.Mapper;
 public interface EmployeeMapper {
     Employee entityToDomain(EmployeeEntity entity);
 
-    EmployeeResponse domainToResponse(Employee organization);
+    EmployeeResponse domainToResponse(Employee employee);
 }
