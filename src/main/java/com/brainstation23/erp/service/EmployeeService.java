@@ -38,6 +38,8 @@ public class EmployeeService {
         var entity = new EmployeeEntity();
         entity.setFirstName(createRequest.getFirstName());
         entity.setLastName(createRequest.getLastName());
+        entity.setUserName(createRequest.getUserName());
+        entity.setPassword(createRequest.getPassword());
         var createdEntity = employeeRepository.save(entity);
         return createdEntity.getId();
     }
@@ -47,6 +49,8 @@ public class EmployeeService {
                 .orElseThrow(() -> new NotFoundException(EMPLOYEE_NOT_FOUND));
         entity.setFirstName(updateRequest.getFirstName());
         entity.setLastName(updateRequest.getLastName());
+        entity.setUserName(updateRequest.getUserName());
+        entity.setPassword(updateRequest.getPassword());
         employeeRepository.save(entity);
     }
 

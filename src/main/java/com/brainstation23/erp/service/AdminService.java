@@ -38,6 +38,8 @@ public class AdminService {
         var entity = new AdminEntity();
         entity.setFirstName(createRequest.getFirstName());
         entity.setLastName(createRequest.getLastName());
+        entity.setUserName(createRequest.getUserName());
+        entity.setPassword(createRequest.getPassword());
         var createdEntity = adminRepository.save(entity);
         return createdEntity.getId();
     }
@@ -47,6 +49,8 @@ public class AdminService {
                 .orElseThrow(() -> new NotFoundException(ADMIN_NOT_FOUND));
         entity.setFirstName(updateRequest.getFirstName());
         entity.setLastName(updateRequest.getLastName());
+        entity.setUserName(updateRequest.getUserName());
+        entity.setPassword(updateRequest.getPassword());
         adminRepository.save(entity);
     }
 
